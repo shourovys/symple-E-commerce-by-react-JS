@@ -1,0 +1,29 @@
+.cartContainer {
+  margin-left: 5px;
+  margin-top: 10px;
+  position: sticky;
+  top: 8px;
+}
+.cartContainer p {
+  font-size: 15px;
+  line-height: 10px;
+  font-weight: 400;
+}
+.cartContainer h3 {
+  line-height: 6px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textRight {
+  width: 60px;
+  text-align: end;
+}
+
+.cartContainer P {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px, 30px;
+}

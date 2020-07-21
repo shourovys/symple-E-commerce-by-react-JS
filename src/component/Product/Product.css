@@ -1,0 +1,13 @@
+* {
+  font-family: sans-serif, serif;
+}
+.container {
+  display: flex;
+}
+.left {
+  flex-basis: 80%;
+}
+.cart {
+  flex-basis: 20%;
+  border-left: 1px solid lightgray;
+}
