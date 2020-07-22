@@ -4,6 +4,7 @@ import fakeData from '../../fakeData';
 import ShowProduct from '../ShowProduct/ShowProduct';
 import Cart from '../Cart/Cart';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
+import { Link } from 'react-router-dom';
 
 const Product = () => {
     // take data form fakeData and store in useState
@@ -14,13 +15,22 @@ const Product = () => {
     const [cartProducts, setCartProducts] = useState([])
     // this function handel add-to-cart button even and update State
     let handelAddToCart = (cartProduct) => {
-        let newCartProduct = [...cartProducts, cartProduct] //take previous cartProducts & new cartProduct and update
-        setCartProducts(newCartProduct)
+        let cartPdKey = cartProduct.key;
+        let count = 1
+        let newCartProducts
+        let sameProduct = cartProducts.find(pd => pd.key === cartPdKey);
+        if (sameProduct) {
+            count = count + 1;
+            sameProduct.quantity = count;
 
-        // set key and quantity of CartProduct, in localStorage by using addToDatabaseCart()----->for share data in same level (OrderReview component)
-        let sameCartProduct = newCartProduct.filter(pd => pd.key === cartProduct.key)
-        let count = sameCartProduct.length;
-
+            let otherAddedPd = productsData.fill(pd => pd.key !== cartPdKey)
+            newCartProducts = [...otherAddedPd, sameProduct]
+        }
+        else {
+            cartProduct.quantity = 1
+            newCartProducts = [...cartProducts, cartProduct] //take previous cartProducts & new cartProduct and update
+        }
+        setCartProducts(newCartProducts)
         addToDatabaseCart(cartProduct.key, count)
     }
 
@@ -53,7 +63,17 @@ const Product = () => {
                 }
             </div>
             <div className="cart">
-                <Cart cartProducts={cartProducts}></Cart>
+                <Cart cartProducts={cartProducts}>
+                    <Link style={{
+                        margin: 'auto',
+                        display: 'block',
+                        width: '55%'
+                    }}
+                        to="/OrderReview">
+                        <button className="add-to-cart">Order Review</button>
+                    </Link>
+                </Cart>
+
             </div>
         </div>
     );

@@ -54,6 +54,10 @@ const Cart = (props) => {
             <p><samp>Vat : </samp><samp className="textRight">{makeNun2digit(vat)}</samp></p>
             <hr></hr>
             <p><samp>Total Price :</samp> <samp className="textRight">{makeNun2digit(grandTotal)}</samp></p>
+            {
+                props.children
+            }
+
 
         </div>
     );

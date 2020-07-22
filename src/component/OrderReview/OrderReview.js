@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './OrderReview.css'
-import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import happyImage from '../../images/giphy.gif';
 
 const OrderReview = () => {
     // in this useState i store OrderProduct those take form localStorage by useEffect
     const [orderProducts, setOrderProducts] = useState([]);
+    // when user place order i use this state for show gif
+    const [OrderPlace, setOrderPlace] = useState(false)
 
     useEffect(() => {
         // take data form localStorage by getDatabaseCart() 
@@ -28,6 +31,18 @@ const OrderReview = () => {
         removeFromDatabaseCart(key)//this remove product key for localStorage
     }
 
+    // handelOrderPlace() clear localstorage and clear state
+    const handelOrderPlace = () => {
+        processOrder()
+        setOrderProducts([])
+
+    }
+
+    let happy;
+    if (OrderPlace) {
+        happy = <img src={happyImage} />
+    }
+
 
     return (
         <div className="container">
@@ -40,13 +55,21 @@ const OrderReview = () => {
                     //  passing event handler 
                     removeItemFormReview={removeItemFormReview}
                 ></ReviewItem>)}
+                {happy}
             </div>
 
             <div className="cart">
-                <Cart cartProducts={orderProducts}></Cart>
-            </div>
-
-        </div>
+                <Cart cartProducts={orderProducts}>
+                    <button
+                        style={{
+                            margin: 'auto',
+                            display: 'block',
+                            width: '55%'
+                        }}
+                        onClick={handelOrderPlace} className="add-to-cart">Order Place</button>
+                </Cart>
+            </div >
+        </div >
     );
 };
 
