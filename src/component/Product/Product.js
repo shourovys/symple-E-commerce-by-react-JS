@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Product.css'
 import fakeData from '../../fakeData';
 import ShowProduct from '../ShowProduct/ShowProduct';
 import Cart from '../Cart/Cart';
-import { addToDatabaseCart } from '../../utilities/databaseManager';
+import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
 
 const Product = () => {
     // take data form fakeData and store in useState
@@ -23,6 +23,20 @@ const Product = () => {
 
         addToDatabaseCart(cartProduct.key, count)
     }
+
+
+    useEffect(() => {
+        // take data form localStorage by getDatabaseCart() 
+        const products = getDatabaseCart()
+        let productKey = Object.keys(products);
+        let orderProduct = productKey.map(key => {
+            let product = fakeData.find(pd => pd.key === key);
+            product.quantity = products[key] // add count value in every OrderReview Products
+            return product
+        })
+        setCartProducts(orderProduct);
+
+    }, [])
 
     return (
         <div className="container">

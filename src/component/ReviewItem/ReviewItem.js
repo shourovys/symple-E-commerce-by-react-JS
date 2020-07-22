@@ -15,9 +15,6 @@ const ReviewItem = (props) => {
                 <p>quantity : {quantity}</p>
                 <button onClick={() => props.removeItemFormReview(key)} className="add-to-cart removeItemBtn">Remove</button>
             </div>
-
-
-
         </div>
     );
 };
