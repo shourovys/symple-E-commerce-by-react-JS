@@ -12,6 +12,7 @@ import OrderReview from './component/OrderReview/OrderReview';
 import UpComing from './component/Navbar/UpComing/UpComing';
 import NotFound from './component/NotFound/NotFound';
 import ProductDtls from './component/ProductDtls/ProductDtls';
+import LogIn from './component/LogIn/LogIn';
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
 
           <Route exact path="/">
             <Product></Product>
+          </Route>
+
+          <Route exact path="/login">
+            <LogIn></LogIn>
           </Route>
 
           <Route path="*">
