@@ -1,6 +1,10 @@
 import React from 'react';
 import './Cart.css'
+import Auth, { useAuth } from '../LogIn/UseAuth';
 const Cart = (props) => {
+
+    const auth = useAuth;
+
     let cartProducts = props.cartProducts
     // makeNun2digit function make two digits after .
     const makeNun2digit = num => Number(num.toFixed(2))
@@ -42,6 +46,9 @@ const Cart = (props) => {
             countOrderItem = cartProducts.length
         }
     });
+
+
+
 
 
     return (

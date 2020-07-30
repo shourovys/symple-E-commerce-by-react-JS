@@ -4,12 +4,33 @@
   width: 265px;
   margin: auto;
 }
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: black;
+  height: 44px;
+}
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+.user {
+  margin-right: 33px;
+  font-size: 1.2rem;
+  font-weight: 550;
+  color: wheat;
+}
+.userImg {
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid white;
+}
 .nav-item-container {
   display: flex;
   align-items: center;
-  background-color: black;
   color: white;
-  height: 44px;
 }
 .nav-item {
   margin: 2px 12px;
